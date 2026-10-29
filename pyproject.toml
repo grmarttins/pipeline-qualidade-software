@@ -1,0 +1,34 @@
+[project]
+name = "pipeline-qualidade-software"
+version = "0.1.0"
+authors = [
+    {name= "Gustavo Martins", email="gustavo10887@gmail.com"}
+]
+description = "aplicando qualidade de eng. de software na eng. de dados"
+readme = "README.md"
+requires-python = ">= 3.12"
+dependencies = [
+    "polars>=2.1.0", 
+    "httpx>=0.28.1",
+    "psycopg[binary]>=3.3.6",
+    "pydantic-settings>=2.16.2"
+]
+
+[project.optional-dependencies]
+dev = [
+    "testcontainers[postgres]>=4.15.0",
+    "pytest>=9.2.0",
+    "ruff>=0.17.3",
+    "black>=26.10.1",
+    "mypy>=2.4.1",
+    "pre-commit>=4.7.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/grmarttins/pipeline-qualidade-software"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[tool.hatch.build.targets.wheel]
+packages = ["src/pipeline"]
