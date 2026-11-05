@@ -11,7 +11,7 @@ services:
       POSTGRES_DB: ${PG_DB}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
     ports:
-      - 5432:5432
+      - 5433:5432
     healthcheck: # informa ao Docker como testar um contêiner para verificar se ele ainda está funcionando.
       test: ["CMD-SHELL", "pg_isready -U ${PG_USER} -d ${PG_DB}"]
       interval: 5s
