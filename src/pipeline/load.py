@@ -20,6 +20,12 @@ def insert_moedas(conn, moedas: list[dict]) -> None:
     sql = """
     INSERT INTO moedas (simbolo, nome_moeda, tipo_moeda)
     VALUES (%(simbolo)s, %(nomeFormatado)s, %(tipoMoeda)s)
+    ON CONFLICT (simbolo) DO UPDATE SET
+        nome_moeda = EXCLUDED.nome_moeda,
+        tipo_moeda = EXCLUDED.tipo_moeda,
+        dt_atualizacao = CURRENT_TIMESTAMP
+    WHERE moedas.nome_moeda IS DISTINCT FROM EXCLUDED.nome_moeda
+    OR moedas.tipo_moeda IS DISTINCT FROM EXCLUDED.tipo_moeda;
     """
 
     with conn.cursor() as cur:
